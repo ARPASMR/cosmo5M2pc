@@ -1,0 +1,85 @@
+# vedere https://code.mpimet.mpg.de/boards/2/topics/5382
+#
+# gridID 2
+#
+# gridtype  = lonlat
+# gridsize  = 30000
+# xname     = lon
+# xlongname = longitude
+# xunits    = degrees
+# yname     = lat
+# ylongname = latitude
+# yunits    = degrees
+# xsize     = 200
+# ysize     = 150
+# xfirst    = 4.5
+# xinc      = 0.0625
+# yfirst    = 41
+# yinc      = 0.0625
+#
+#
+#
+# gridID 1
+#
+# gridtype  = projection
+# gridsize  = 95472
+# xsize     = 306
+# ysize     = 312
+# xname     = rlon
+# xlongname = "longitude in rotated grid"
+# xunits    = "degrees"
+# yname     = rlat
+# ylongname = "latitude in rotated grid"
+# yunits    = "degrees"
+# xfirst    = 17.35
+# xinc      = 0.1
+# yfirst    = 15.8
+# yinc      = -0.0999999999999996
+# grid_mapping = rotated_pole
+# grid_mapping_name = rotated_latitude_longitude
+# grid_north_pole_latitude = -18.
+# grid_north_pole_longitude = -37.5
+#
+#
+#
+# gridID 2 griglia di COSMO5M
+#
+# gridID 2 griglia di COSMO5M
+#
+# gridtype  = lonlat
+# gridsize  = 167524
+# xname     = rlon
+# xlongname = longitude in rotated pole grid
+# xunits    = degrees
+# yname     = rlat
+# ylongname = latitude in rotated pole grid
+# yunits    = degrees
+# xsize     = 386
+# ysize     = 434
+# xnpole    = -170
+# ynpole    = 47
+# xfirst    = -7.785
+# xinc      = 0.045
+# yfirst    = -10.575
+# yinc      = 0.045
+#
+#
+#
+# gridID 2 griglia di COSMOI7
+#
+gridtype  = lonlat
+gridsize  = 92961
+xname     = rlon
+xlongname = longitude in rotated pole grid
+xunits    = degrees
+yname     = rlat
+ylongname = latitude in rotated pole grid
+yunits    = degrees
+xsize     = 297
+ysize     = 313
+xnpole    = -170
+ynpole    = 32.5
+xfirst    = -8.5
+xinc      = 0.0625
+yfirst    = -25
+yinc      = 0.0625
