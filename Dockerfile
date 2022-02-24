@@ -31,7 +31,7 @@ RUN echo 'Acquire::http::Timeout "240";' >> /etc/apt/apt.conf.d/180Timeout
 # tolti libc-dev zlib1g gcc gfortran g++ udunits-bin
 RUN apt-get update
 RUN apt-get -y install curl git locales dnsutils openssh-client smbclient procps util-linux build-essential ncftp rsync libtool gcc gfortran
-RUN apt-get -y install nfs-common openssl xorg xorg-dev libqt5core5a libqt5gui5 libjpeg-dev libpng-dev libbz2-dev
+RUN apt-get -y install nfs-common openssl libqt5core5a libqt5gui5 libbz2-dev
 
 # compilo hdf5
 COPY ./src/hdf5-1.12.1.tar.gz /opt/cosmo_5M/src/
@@ -64,7 +64,7 @@ RUN cd /opt/cosmo_5M/src \
 
 # finisco di installare i pacchetti
 ENV PATH=$PATH:/usr/local/hdf5:/usr/local/netcdf
-RUN apt-get -y install libnetcdf18 libnetcdf-dev jq libreadline-dev imagemagick libeccodes0 libeccodes-tools grads r-base r-base-dev
+RUN apt-get -y install libnetcdf18 libnetcdf-dev jq libreadline-dev libeccodes0 libeccodes-tools r-base r-base-dev
 
 # compilo cdo-1.7.2 [versione vecchia, ma compatibile con il formato del file di griglia I7 per PC]
 ENV CPPFLAGS="$CPPFLAGS -fcommon"
@@ -85,24 +85,6 @@ RUN cd /opt/cosmo_5M/src/wgrib \
         && make \
         && mv wgrib /usr/local/bin/ \
         && cd /opt/cosmo_5M && rm -rf src/wgrib
-
-## compilo R versione 3.5.2
-##RUN apt-get install gdebi-core
-#ENV R_VERSION=3.5.2
-#ENV CPPFLAGS="$CPPFLAGS -fcommon"
-#ENV FC=gfortran
-#ENV FCFLAGS="-std=legacy"
-#RUN mkdir /opt/radar/R-build \
-#       && curl http://cran.mirror.garr.it/mirrors/CRAN/src/base/R-3/R-${R_VERSION}.tar.gz > /opt/radar/R-build/R-${R_VERSION}.tar.gz \
-#       && cd /opt/radar/R-build \
-#       && tar -xzvf R-${R_VERSION}.tar.gz \
-#       && cd R-${R_VERSION} \
-#       && ./configure --enable-memory-profiling --enable-R-shlib --with-blas --with-lapack \
-#       && make \
-##      && make check \
-#       && make install \
-#       && cd ../.. \
-#       && rm -rf R-build
 
 # installo i pacchetti di R necessari agli scripts
 RUN R -e "install.packages('ncdf4', repos = 'http://cran.mirror.garr.it/mirrors/CRAN/')"
