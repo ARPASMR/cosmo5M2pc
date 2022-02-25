@@ -3,7 +3,6 @@ FROM debian:11-slim
 
 LABEL name="plottaggi cosmo 5M"
 LABEL version="1.0"
-#LABEL decription=""
 LABEL maintainer="EP"
 
 # filesystem
@@ -17,7 +16,6 @@ RUN mkdir /opt/cosmo_5M/doc
 RUN mkdir /opt/cosmo_5M/draw
 RUN mkdir /opt/cosmo_5M/log
 RUN mkdir /opt/cosmo_5M/src
-RUN chmod -R 777 /opt/cosmo_5M
 
 # do i permessi a tutti
 RUN chmod -R 777 /opt/cosmo_5M
@@ -28,10 +26,9 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 # cambio i timeout
 RUN echo 'Acquire::http::Timeout "240";' >> /etc/apt/apt.conf.d/180Timeout
 # installo gli aggiornamenti ed i pacchetti necessari 
-# tolti libc-dev zlib1g gcc gfortran g++ udunits-bin
 RUN apt-get update
 RUN apt-get -y install curl git locales dnsutils openssh-client smbclient procps util-linux build-essential ncftp rsync libtool gcc gfortran
-RUN apt-get -y install nfs-common openssl libqt5core5a libqt5gui5 libbz2-dev
+RUN apt-get -y install nfs-common openssl libqt5core5a libqt5gui5 libbz2-dev python
 
 # compilo hdf5
 COPY ./src/hdf5-1.12.1.tar.gz /opt/cosmo_5M/src/
@@ -57,7 +54,7 @@ RUN cd /opt/cosmo_5M/src \
         && cd netcdf-c-4.8.1 \
         && ./configure --prefix=/usr/local/netcdf \
         && make \
-#        && make check \
+#       && make check \
         && make install \
         && cd /opt/cosmo_5M \
         && rm -rf src/*
@@ -97,7 +94,6 @@ RUN echo "# .bash_aliases" >> /root/.bash_aliases \
 
 # definisco l'entrypoint
 #ENTRYPOINT ["/bin/bash","/opt/cosmo_5M/entry.sh" ]
-CMD "/bin/bash"
 
 # atterro nella directory radice del processo
 WORKDIR /opt/cosmo_5M
